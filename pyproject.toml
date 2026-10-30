@@ -11,7 +11,7 @@ requires-python = ">=3.11"
 dependencies = ["numpy", "scipy", "shapely>=2", "pillow", "pycairo"]
 
 [project.optional-dependencies]
-dev = ["pytest", "hypothesis", "ruff", "mypy"]
+dev = ["pytest", "hypothesis", "ruff", "mypy", "pypdf"]
 mesh = ["trimesh"]
 
 [project.scripts]

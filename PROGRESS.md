@@ -15,7 +15,7 @@ Arranque del repo (Fase 0/1 del plan v2.6): esqueleto, núcleo sin GTK y primera
 - [ ] S0.4 PDF a escala 1:1 con pycairo (ADR-06); imprimir y medir 100 mm
 - [ ] S0.5 STL y voxelización 64³/128³
 - [ ] S0.6 prototipos en papel (step-fold y box-fold)
-- [ ] Rebanada vertical F1: capa plana + step-fold → PDF armado (US-301, US-302, US-601)
+- [ ] Rebanada vertical F1: falta capa plana (US-301), IDs de pestaña en el mapa de pegado (US-602) y conectar el patrón con el proyecto/GUI
 - [ ] Tent-fold, v-fold (CR-1), box-fold, cilindro, mecanismo por datos (apéndice D)
 - [ ] Datos del cliente: 3 PNG, STL simple, espesores, medidas de la casita (preguntas 3, 13, 14)
 
@@ -28,9 +28,12 @@ Arranque del repo (Fase 0/1 del plan v2.6): esqueleto, núcleo sin GTK y primera
 - [x] `mechanisms/step_fold.py` con fórmula cerrada; coincide con el apéndice B (≤ 0,05 mm)
 - [x] `validate/rules.py`: V-01 y V-03 para step-fold
 - [x] CLI `python -m popup_studio step-fold`
+- [x] Patrón plano del step-fold (`layout/step_fold_layout.py`) y PDF 1:1 con pycairo (`export/pdf.py`): corte, valle, montaña, pestañas ≥ 10 mm con esquinas recortadas, hoja A3, página de calibración (`python -m popup_studio export-step` / `calibration`)
 - [x] Ventana GTK 4 mínima (`python -m popup_studio gui`): sección del step-fold con deslizador de φ. Sin probar (sin GTK en el entorno de desarrollo)
-- [x] Tests: 14 pasan (unitarios + propiedades); ruff y mypy estricto limpios
+- [x] Tests: 21 pasan (unitarios + propiedades); ruff y mypy estricto limpios
 
 ## Latest Blockers/Discoveries
+- La asignación valle/montaña del step-fold (A y G valle, M montaña) es [Propuesta]: validar en el prototipo S0.6.
+- cairo guarda el MediaBox en un object stream comprimido: los tests leen el PDF con pypdf (dev).
 - Los spikes S0.1 (visor) y S0.4 (impresión real) necesitan el equipo y la impresora del cliente.
 - Dependencias de desarrollo: pytest, hypothesis, ruff, mypy, shapely, pycairo (instaladas con pip).
