@@ -28,6 +28,7 @@ Arranque del repo (Fase 0/1 del plan v2.6): esqueleto, núcleo sin GTK y primera
 - [x] `mechanisms/step_fold.py` con fórmula cerrada; coincide con el apéndice B (≤ 0,05 mm)
 - [x] `validate/rules.py`: V-01 y V-03 para step-fold
 - [x] CLI `python -m popup_studio step-fold`
+- [x] Ventana GTK 4 mínima (`python -m popup_studio gui`): sección del step-fold con deslizador de φ. Sin probar (sin GTK en el entorno de desarrollo)
 - [x] Tests: 14 pasan (unitarios + propiedades); ruff y mypy estricto limpios
 
 ## Latest Blockers/Discoveries
