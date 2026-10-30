@@ -12,7 +12,7 @@ from typing import Literal
 from popup_studio.mechanisms.step_fold import StepFold
 
 Pt = tuple[float, float]
-FoldKind = Literal["mountain", "valley"]
+FoldKind = Literal["mountain", "valley", "glue"]
 
 
 @dataclass(frozen=True)

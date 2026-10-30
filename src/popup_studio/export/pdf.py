@@ -18,6 +18,7 @@ _STYLE = {
     "cut": ((0.0, 0.0, 0.0), []),
     "valley": ((0.0, 0.2, 0.9), [3.0 * MM, 1.5 * MM]),
     "mountain": ((0.85, 0.1, 0.1), [4.0 * MM, 1.2 * MM, 0.6 * MM, 1.2 * MM]),
+    "glue": ((0.0, 0.55, 0.2), [1.0 * MM, 1.0 * MM]),
 }
 
 
@@ -91,4 +92,15 @@ def export_calibration(path: str | Path, sheet_mm: tuple[float, float] = (420.0,
     cr.set_font_size(3 * MM)
     cr.move_to(12 * MM, 116 * MM)
     cr.show_text("Imprimir al 100 % (sin ajustar a página). El cuadrado debe medir 100 mm.")
+    surface.finish()
+
+
+def export_page_map(
+    pattern: Pattern, path: str | Path, sheet_mm: tuple[float, float] = (420.0, 297.0)
+) -> None:
+    """Exporta un patrón en coordenadas absolutas de la hoja (sin acomodar): mapa de pegado."""
+    w, h = sheet_mm
+    surface = cairo.PDFSurface(str(path), w * MM, h * MM)
+    cr = cairo.Context(surface)
+    draw_pattern(cr, pattern, 0.0, 0.0)
     surface.finish()

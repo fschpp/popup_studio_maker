@@ -17,6 +17,7 @@ pip install -e ".[dev]"
 pytest
 ruff check . && mypy
 python -m popup_studio step-fold --h 40 --g 40
+python -m popup_studio export-vfold --alpha 45 --beta 90 -o v_fold   # PDFs 1:1: pieza + mapa de pegado
 ```
 
 Regla de capas: `core`, `mechanisms`, `sim`, `validate`, `io` **no importan GTK**.

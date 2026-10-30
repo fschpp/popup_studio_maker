@@ -16,7 +16,8 @@ Arranque del repo (Fase 0/1 del plan v2.6): esqueleto, núcleo sin GTK y primera
 - [ ] S0.5 STL y voxelización 64³/128³
 - [ ] S0.6 prototipos en papel (step-fold y box-fold)
 - [ ] Rebanada vertical F1: falta capa plana (US-301), IDs de pestaña en el mapa de pegado (US-602) y conectar el patrón con el proyecto/GUI
-- [ ] Tent-fold, v-fold (CR-1), box-fold, cilindro, mecanismo por datos (apéndice D)
+- [ ] V-fold: falta simulación animada en GUI, rango de exclusión V-05, tipos 1 y 2 de Ruiz (caja completa / media caja) y reproducir CR-1 y la casita (dos V-fold enfrentados + paralelogramo)
+- [ ] Tent-fold, box-fold, cilindro, mecanismo por datos (apéndice D)
 - [ ] Datos del cliente: 3 PNG, STL simple, espesores, medidas de la casita (preguntas 3, 13, 14)
 
 ### [/] In Progress
@@ -29,10 +30,13 @@ Arranque del repo (Fase 0/1 del plan v2.6): esqueleto, núcleo sin GTK y primera
 - [x] `validate/rules.py`: V-01 y V-03 para step-fold
 - [x] CLI `python -m popup_studio step-fold`
 - [x] Patrón plano del step-fold (`layout/step_fold_layout.py`) y PDF 1:1 con pycairo (`export/pdf.py`): corte, valle, montaña, pestañas ≥ 10 mm con esquinas recortadas, hoja A3, página de calibración (`python -m popup_studio export-step` / `calibration`)
+- [x] V-fold (US-304 parcial): `mechanisms/v_fold.py` con solución cerrada (crease por intersección de conos; la rama levantada), variantes recto/agudo/obtuso/asimétrico con balance α+β (V-03) forzado; patrón plano con pestañas (`layout/v_fold_layout.py`), mapa de pegado sobre la hoja y validación V-01 de la tarjeta cerrada; comando `export-vfold`
 - [x] Ventana GTK 4 mínima (`python -m popup_studio gui`): sección del step-fold con deslizador de φ. Sin probar (sin GTK en el entorno de desarrollo)
-- [x] Tests: 21 pasan (unitarios + propiedades); ruff y mypy estricto limpios
+- [x] Tests: 92 pasan (unitarios + propiedades); ruff y mypy estricto limpios
 
 ## Latest Blockers/Discoveries
+- V-fold: el balance α+β es la condición de cierre plano; con él la solución levantada converge de forma continua a la dirección α+β con la tarjeta cerrada (casita: 135°) y es vertical a 180° (oráculo de los tests). Orientación del mapa: G = mitad izquierda, B = mitad derecha, crease hacia arriba de la hoja [Propuesta]: confirmar con CR-1.
+- La pieza del V-fold es por ahora un triángulo por ala (largo del crease y de los pegados); la forma real de las alas (trapecios, ventanas) llega con las piezas de la casita.
 - La asignación valle/montaña del step-fold (A y G valle, M montaña) es [Propuesta]: validar en el prototipo S0.6.
 - cairo guarda el MediaBox en un object stream comprimido: los tests leen el PDF con pypdf (dev).
 - Los spikes S0.1 (visor) y S0.4 (impresión real) necesitan el equipo y la impresora del cliente.
