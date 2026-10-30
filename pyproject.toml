@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "popup-studio"
+version = "0.1.0"
+description = "Diseñador de páginas de libros popup (Python + GTK 4)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["numpy", "scipy", "shapely>=2", "pillow", "pycairo"]
+
+[project.optional-dependencies]
+dev = ["pytest", "hypothesis", "ruff", "mypy"]
+mesh = ["trimesh"]
+
+[project.scripts]
+popup-studio = "popup_studio.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src/popup_studio/core", "src/popup_studio/mechanisms", "src/popup_studio/sim",
+         "src/popup_studio/validate", "src/popup_studio/io"]
